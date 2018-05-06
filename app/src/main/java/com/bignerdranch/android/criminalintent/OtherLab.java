@@ -6,35 +6,36 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.bignerdranch.android.criminalintent.database.CrimeBaseHelper;
-import com.bignerdranch.android.criminalintent.database.CrimeDbSchema.CrimeTable;
+import com.bignerdranch.android.criminalintent.database.OtherDbSchema;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class CrimeLab {
-    private static CrimeLab sCrimeLab;
+public class OtherLab {
+    private static OtherLab sOtherLab;
     private Context mContext;
     private SQLiteDatabase mDatabase;
 
-    public void deleteCrime(Crime c){
-        mDatabase.delete(CrimeTable.NAME, CrimeTable.Cols.UUID + " = ?", new String[] { c.getId().toString() });
+    public void deleteOther(Other c){
+        mDatabase.delete(OtherDbSchema.OtherTable.NAME, OtherDbSchema.OtherTable.Cols.UUID + " = ?", new String[] { c.getId().toString() });
     }
 
-    public void addCrime(Crime c) {
+    public void addOther(Other c) {
         ContentValues values = getContentValues(c);
-        mDatabase.insert(CrimeTable.NAME, null, values);
+        mDatabase.insert(OtherDbSchema.OtherTable.NAME, null, values);
     }
 
-    public static CrimeLab get(Context context) {
-        if (sCrimeLab == null) {
-            sCrimeLab = new CrimeLab(context);
+    public static OtherLab get(Context context) {
+        if (sOtherLab == null) {
+            sOtherLab = new OtherLab(context);
         }
 
-        return sCrimeLab;
+        return sOtherLab;
     }
 
-    private CrimeLab(Context context) {
+    private OtherLab(Context context) {
         mContext = context.getApplicationContext();
         mDatabase = new CrimeBaseHelper(mContext).getWritableDatabase();
     }
@@ -55,9 +56,9 @@ public class CrimeLab {
         return crimes;
     }
 
-    public Crime getCrime(UUID id) {
+    public Crime getOther(UUID id) {
         CrimeCursorWrapper cursor = queryCrimes (
-                CrimeTable.Cols.UUID + " = ?",
+                OtherDbSchema.OtherTable.Cols.UUID + " = ?",
                 new String[] { id.toString() }
         );
 
@@ -72,18 +73,18 @@ public class CrimeLab {
         }
     }
 
-    public void updateCrime(Crime crime) {
-        String uuidString = crime.getId().toString();
-        ContentValues values = getContentValues(crime);
+    public void updateCrime(Other other) {
+        String uuidString = other.getId().toString();
+        ContentValues values = getContentValues(other);
 
-        mDatabase.update(CrimeTable.NAME, values,
-                CrimeTable.Cols.UUID + " = ?",
+        mDatabase.update(OtherDbSchema.OtherTable.NAME, values,
+                OtherDbSchema.OtherTable.Cols.UUID + " = ?",
                 new String[] {uuidString});
     }
 
     private CrimeCursorWrapper queryCrimes(String whereClause, String[] whereArgs) {
         Cursor cursor = mDatabase.query(
-                CrimeTable.NAME,
+                OtherDbSchema.OtherTable.NAME,
                 null, //colums - null selects all columns
                 whereClause,
                 whereArgs,
@@ -94,15 +95,11 @@ public class CrimeLab {
         return new CrimeCursorWrapper(cursor);
     }
 
-    private static ContentValues getContentValues(Crime crime) {
+    private static ContentValues getContentValues(Other other) {
         ContentValues values = new ContentValues();
-        values.put(CrimeTable.Cols.UUID, crime.getId().toString());
-        values.put(CrimeTable.Cols.TITLE, crime.getTitle());
-        values.put(CrimeTable.Cols.DATE, crime.getDate().getTime());
-        values.put(CrimeTable.Cols.SOLVED, crime.isSolved() ? 1 : 0);
-        values.put(CrimeTable.Cols.SUSPECT, crime.getSuspect());
-        values.put(CrimeTable.Cols.NUMBER, crime.getPhoneNumber());
-
+        values.put(OtherDbSchema.OtherTable.Cols.UUID, other.getId().toString());
+        values.put(OtherDbSchema.OtherTable.Cols.TITLE, other.getTitle());
+        values.put(OtherDbSchema.OtherTable.Cols.DATE, other.getDate().getTime());
         return values;
     }
 }
