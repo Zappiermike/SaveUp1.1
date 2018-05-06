@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,7 +56,7 @@ public class CrimeListFragment extends Fragment {
             }
         });
 
-        mNewOther = (Button) view.findViewById(R.id.new_other);
+        mNewOther = (Button) view.findViewById(R.id.new_crime);
         mNewOther.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
@@ -170,7 +171,7 @@ public class CrimeListFragment extends Fragment {
         public void bind(Crime crime) {
             mCrime = crime;
             mTitleTextView.setText(mCrime.getTitle());
-            mDateTextView.setText(mCrime.getDate().toString());
+            mDateTextView.setText(DateFormat.format("EEEE, MMMM dd", mCrime.getDate()));
             mSolvedImageView.setVisibility(crime.isSolved() ? VISIBLE : GONE);
         }
 
