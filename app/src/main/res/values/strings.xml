@@ -35,4 +35,5 @@
     <string name="new_bill_expense_title">Expense</string>
     <string name="new_bill_expense_hint">Enter the cost of the bill</string>
     <string name="add_bills_button">Add a new bill</string>
+    <string name="add_income_button">Add a new income</string>
 </resources>

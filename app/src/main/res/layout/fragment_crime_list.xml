@@ -9,17 +9,24 @@
         android:id="@+id/bill_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/bills_list_title" />
+        android:text="@string/bills_list_title"
+        android:textSize="30sp" />
 
     <TextView
+        android:id="@+id/income_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/errands_list_title"/>
+        android:layout_marginTop="150dp"
+        android:text="@string/errands_list_title"
+        android:textSize="30sp" />
 
     <TextView
+        android:id="@+id/other_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/other_list_title" />
+        android:layout_marginTop="300dp"
+        android:text="@string/other_list_title"
+        android:textSize="30sp" />
 
 
     <LinearLayout
@@ -33,7 +40,7 @@
             android:id="@+id/new_crime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="300dp"
+            android:layout_marginTop="350dp"
             android:text="@string/new_crime"/>
 
     </LinearLayout>
@@ -42,7 +49,7 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/crime_recycler_view"
         android:layout_width="308dp"
-        android:layout_height="80dp"
+        android:layout_height="110dp"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="40dp"></android.support.v7.widget.RecyclerView>
 

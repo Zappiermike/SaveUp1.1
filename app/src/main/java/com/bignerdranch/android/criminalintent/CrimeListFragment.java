@@ -126,12 +126,7 @@ public class CrimeListFragment extends Fragment {
     private void updateUI() {
         CrimeLab crimeLab = CrimeLab.get(getActivity());
         List<Crime> crimes = crimeLab.getCrimes();
-
-        if (crimes.size() == 0) {
-            mEmptyCrimeList.setVisibility(VISIBLE);
-        }else {
-            mEmptyCrimeList.setVisibility(GONE);
-        }
+        //mEmptyCrimeList.setVisibility(VISIBLE);
 
         if (mAdapter == null) {
             mAdapter = new CrimeAdapter(crimes);
