@@ -26,6 +26,7 @@ public class CrimeListFragment extends Fragment {
     private static final String SAVED_SUBTITLE_VISIBLE = "subtitle";
     private LinearLayout mEmptyCrimeList;
     private Button mNewCrime;
+    private Button mNewOther;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -51,6 +52,14 @@ public class CrimeListFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 newCrime();
+            }
+        });
+
+        mNewOther = (Button) view.findViewById(R.id.new_other);
+        mNewOther.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                newOther();
             }
         });
 
@@ -104,6 +113,13 @@ public class CrimeListFragment extends Fragment {
         Crime crime = new Crime();
         CrimeLab.get(getActivity()).addCrime(crime);
         Intent intent = CrimePagerActivity.newIntent(getActivity(), crime.getId());
+        startActivity(intent);
+    }
+
+    private void newOther(){
+        Other other = new Other();
+        OtherLab.get(getActivity()).addOther(other);
+        Intent intent = CrimePagerActivity.newIntent(getActivity(), other.getId());
         startActivity(intent);
     }
 
