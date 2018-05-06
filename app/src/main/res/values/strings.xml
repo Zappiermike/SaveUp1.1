@@ -37,4 +37,8 @@
     <string name="add_bills_button">Add a new bill</string>
     <string name="add_income_button">Add a new income</string>
     <string name="income_list_title">Income</string>
+    <string name="new_income_title">New Income</string>
+    <string name="new_income_hint">Add a new income</string>
+    <string name="new_income_amount">Amount</string>
+    <string name="new_income_amount_hint">Enter the amount</string>
 </resources>
