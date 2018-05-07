@@ -43,6 +43,12 @@
             android:layout_marginTop="350dp"
             android:text="@string/new_crime"/>
 
+        <Button
+            android:id="@+id/new_other"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/new_other"/>
+
     </LinearLayout>
 
 

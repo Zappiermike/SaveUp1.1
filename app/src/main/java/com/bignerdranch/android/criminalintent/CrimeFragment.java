@@ -23,6 +23,7 @@ public class CrimeFragment extends Fragment {
 
     private Crime mCrime;
     private EditText mTitleField;
+    private EditText mCostField;
 
 
     public static CrimeFragment newInstance(UUID crimeId) {
@@ -89,6 +90,24 @@ public class CrimeFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        mCostField = (EditText) v.findViewById(R.id.new_bill_expense);
+        mCostField.setText(mCrime.getCost());
+        mCostField.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count){
+                mCrime.setCost(s.toString());
+            }
+            @Override
+            public void afterTextChanged(Editable s){
 
             }
         });

@@ -41,4 +41,5 @@
     <string name="new_income_hint">Add a new income</string>
     <string name="new_income_amount">Amount</string>
     <string name="new_income_amount_hint">Enter the amount</string>
+    <string name="new_other">Add a new Other</string>
 </resources>
