@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,7 +55,7 @@ public class CrimeListFragment extends Fragment {
             }
         });
 
-        mNewOther = (Button) view.findViewById(R.id.new_crime);
+        mNewOther = (Button) view.findViewById(R.id.new_other);
         mNewOther.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
@@ -157,7 +156,7 @@ public class CrimeListFragment extends Fragment {
         private Crime mCrime;
         private TextView mTitleTextView;
         private TextView mDateTextView;
-        private ImageView mSolvedImageView;
+        private TextView mCostView;
 
         public CrimeHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.list_item_crime, parent, false));
@@ -165,14 +164,14 @@ public class CrimeListFragment extends Fragment {
 
             mTitleTextView = (TextView) itemView.findViewById(R.id.crime_title);
             mDateTextView = (TextView) itemView.findViewById(R.id.crime_date);
-            mSolvedImageView = (ImageView) itemView.findViewById(R.id.crime_solved);
+            mCostView = (TextView) itemView.findViewById(R.id.new_bill_expense);
         }
 
         public void bind(Crime crime) {
             mCrime = crime;
             mTitleTextView.setText(mCrime.getTitle());
-            mDateTextView.setText(DateFormat.format("EEEE, MMMM dd", mCrime.getDate()));
-            mSolvedImageView.setVisibility(crime.isSolved() ? VISIBLE : GONE);
+            mDateTextView.setText(mCrime.getDate().toString());
+            mCostView.setText(mCrime.getCost());
         }
 
         @Override
