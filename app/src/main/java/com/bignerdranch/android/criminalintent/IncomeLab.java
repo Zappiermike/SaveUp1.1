@@ -3,6 +3,7 @@ package com.bignerdranch.android.criminalintent;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.CursorWrapper;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.bignerdranch.android.criminalintent.database.CrimeBaseHelper;
@@ -38,12 +39,12 @@ public class IncomeLab {
 
         private IncomeLab(Context context) {
             mContext = context.getApplicationContext();
-            mDatabase = new CrimeBaseHelper(mContext).getWritableDatabase();
+            mDatabase = new CrimeBaseHelper(mContext).getWritableDatabase();//Need IncomeBaseHelper
         }
 
         public List<Income> getIncome() {
             List<Income> income = new ArrayList<>();
-            CrimeCursorWrapper cursor = queryIncome(null, null);
+            IncomeCursorWrapper cursor = queryIncome(null, null);
 
             try {
                 cursor.moveToFirst();
@@ -57,8 +58,8 @@ public class IncomeLab {
             return income;
         }
 
-        public Crime getIncome(UUID id) {
-            CrimeCursorWrapper cursor = queryIncome (
+        public Income getIncome(UUID id) {
+            IncomeCursorWrapper cursor = queryIncome (
                     IncomeDbSchema.IncomeTable.Cols.UUID + " = ?",
                     new String[] { id.toString() }
             );
@@ -68,7 +69,7 @@ public class IncomeLab {
                     return null;
                 }
                 cursor.moveToFirst();
-                return cursor.getCrime();
+                return cursor.getIncome();
             } finally {
                 cursor.close();
             }
@@ -83,7 +84,7 @@ public class IncomeLab {
                     new String[] {uuidString});
         }
 
-        private CrimeCursorWrapper queryIncome(String whereClause, String[] whereArgs) {
+        private IncomeCursorWrapper queryIncome(String whereClause, String[] whereArgs) {
             Cursor cursor = mDatabase.query(
                     IncomeDbSchema.IncomeTable.NAME,
                     null, //columns - null selects all columns
@@ -93,13 +94,14 @@ public class IncomeLab {
                     null,   //having
                     null    //orderBy
             );
-            return new CrimeCursorWrapper(cursor);
+            return new IncomeCursorWrapper(cursor);
         }
 
         private static ContentValues getContentValues(Income income) {
             ContentValues values = new ContentValues();
             values.put(IncomeDbSchema.IncomeTable.Cols.UUID, income.getId().toString());
             values.put(IncomeDbSchema.IncomeTable.Cols.TITLE, income.getIncomeName());
+            values.put(IncomeDbSchema.IncomeTable.Cols.AMOUNT, income.getIncomeAmount());
 
             return values;
         }

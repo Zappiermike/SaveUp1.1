@@ -115,6 +115,12 @@ public class CrimeListFragment extends Fragment {
         Intent intent = CrimePagerActivity.newIntent(getActivity(), crime.getId());
         startActivity(intent);
     }
+    private void newIncome(){
+        Income income = new Income();
+        IncomeLab.get(getActivity()).addIncome(income);
+        Intent Iintent = CrimePagerActivity.newIntent(getActivity(),income.getId());
+        startActivity(Iintent);
+    }
 
     private void newOther(){
         Other other = new Other();

@@ -1,5 +1,7 @@
 package com.bignerdranch.android.criminalintent;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 public class IncomeFragment extends Fragment{
+    private static final String ARG_INCOME_ID="income_id";
+
     private Income mIncome;
     private EditText mIncomeTitle;
     private EditText mIncomeAmount;
@@ -52,9 +56,7 @@ public class IncomeFragment extends Fragment{
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                int i=Integer.parseInt(s.toString());
-                mIncome.setIncomeAmount(i);
-
+                mIncome.setIncomeAmount(s.toString());
             }
 
             @Override
@@ -65,6 +67,13 @@ public class IncomeFragment extends Fragment{
 
         
         return v;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode != Activity.RESULT_OK) {
+            return;
+        }
     }
 }
 
