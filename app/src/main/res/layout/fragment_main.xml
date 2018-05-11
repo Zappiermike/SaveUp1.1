@@ -29,35 +29,26 @@
         android:textSize="30sp" />
 
 
-    <LinearLayout
-        android:id="@+id/empty_crime_list"
-        android:layout_width="400dp"
-        android:layout_height="400dp"
-        android:layout_gravity="center"
-        android:orientation="vertical">
-
-    </LinearLayout>
-
     <Button
         android:id="@+id/new_crime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="550dp"
-        android:text="@string/new_crime"/>
+        android:layout_marginTop="450dp"
+        android:text="@string/new_crime" />
 
     <Button
         android:id="@+id/new_income"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="600dp"
-        android:text="@string/add_income_button"/>
+        android:layout_marginTop="500dp"
+        android:text="@string/add_income_button" />
 
     <Button
         android:id="@+id/new_other"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="650dp"
-        android:text="@string/new_other_button"/>
+        android:layout_marginTop="550dp"
+        android:text="@string/new_other_button" />
 
 
 
