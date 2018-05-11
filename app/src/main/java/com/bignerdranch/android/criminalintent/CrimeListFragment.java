@@ -26,7 +26,9 @@ public class CrimeListFragment extends Fragment {
     private static final String SAVED_SUBTITLE_VISIBLE = "subtitle";
     private LinearLayout mEmptyCrimeList;
     private Button mNewCrime;
+    private Button mNewIncome;
     private Button mNewOther;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -59,7 +61,17 @@ public class CrimeListFragment extends Fragment {
         mNewOther.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                newOther();
+                Intent intent = new Intent(getContext(), OtherActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        mNewIncome = (Button) view.findViewById(R.id.new_income);
+        mNewIncome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view){
+                Intent intent = new Intent(getContext(), IncomeActivity.class);
+                startActivity(intent);
             }
         });
 

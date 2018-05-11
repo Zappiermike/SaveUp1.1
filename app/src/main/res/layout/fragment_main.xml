@@ -57,7 +57,9 @@
         android:layout_width="308dp"
         android:layout_height="110dp"
         android:layout_marginLeft="40dp"
-        android:layout_marginTop="40dp"></android.support.v7.widget.RecyclerView>
+        android:layout_marginTop="40dp">
+
+    </android.support.v7.widget.RecyclerView>
 
 
 </FrameLayout>
