@@ -19,7 +19,7 @@ public class IncomeLab {
         private Context mContext;
         private SQLiteDatabase mDatabase;
 
-        public void deleteIncome(Crime c){
+        public void deleteIncome(Income c){
             mDatabase.delete(IncomeDbSchema.IncomeTable.NAME, IncomeDbSchema.IncomeTable.Cols.UUID + " = ?",
                     new String[] { c.getId().toString() });
         }
@@ -49,7 +49,7 @@ public class IncomeLab {
             try {
                 cursor.moveToFirst();
                 while (!cursor.isAfterLast()) {
-                    income.add(cursor.getIncome()); 
+                    income.add(cursor.getIncome());
                     cursor.moveToNext();
                 }
             } finally {

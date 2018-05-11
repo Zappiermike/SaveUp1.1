@@ -42,4 +42,5 @@
     <string name="new_income_amount">Amount</string>
     <string name="new_income_amount_hint">Enter the amount</string>
     <string name="new_other_button">Add a new Other</string>
+    <string name="delete_income">Delete Income</string>
 </resources>
