@@ -47,6 +47,7 @@ public class IncomeFragment extends Fragment{
 
             }
         });
+
         mIncomeAmount = (EditText) v.findViewById(R.id.editText);
         mIncomeAmount.addTextChangedListener(new TextWatcher() {
             @Override
