@@ -42,14 +42,14 @@ public class IncomeLab {
             mDatabase = new CrimeBaseHelper(mContext).getWritableDatabase();//Need IncomeBaseHelper
         }
 
-        public List<Income> getIncome() {
+        public List<Income> getIncomes() {
             List<Income> income = new ArrayList<>();
             IncomeCursorWrapper cursor = queryIncome(null, null);
 
             try {
                 cursor.moveToFirst();
                 while (!cursor.isAfterLast()) {
-                    //income.add(cursor.getIncome); //Need to make IncomeCursorWrapper to work
+                    income.add(cursor.getIncome()); 
                     cursor.moveToNext();
                 }
             } finally {
