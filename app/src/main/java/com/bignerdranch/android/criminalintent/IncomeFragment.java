@@ -11,6 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
+
+import com.squareup.picasso.Picasso;
 
 public class IncomeFragment extends Fragment{
     private static final String ARG_INCOME_ID="income_id";
@@ -18,9 +21,10 @@ public class IncomeFragment extends Fragment{
     private Income mIncome;
     private EditText mIncomeTitle;
     private EditText mIncomeAmount;
+    private ImageView mImageView;
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mIncome= new Income();
     }
@@ -28,6 +32,11 @@ public class IncomeFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View v =inflater.inflate(R.layout.fragment_income, container, false);
+
+        mImageView = (ImageView) v.findViewById(R.id.imageView02);
+        Picasso.with(getContext())
+                .load("https://cdn4.iconfinder.com/data/icons/economy-color-v-2/512/money_currency_bill_bills_stack_euro-256.png")
+                .into(mImageView);
 
 
         mIncomeTitle = (EditText) v.findViewById(R.id.EditIncomeName);
