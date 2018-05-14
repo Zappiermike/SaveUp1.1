@@ -33,21 +33,21 @@
         android:id="@+id/new_crime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="450dp"
+        android:layout_marginTop="540dp"
         android:text="@string/new_crime" />
 
     <Button
         android:id="@+id/new_income"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="500dp"
+        android:layout_marginTop="590dp"
         android:text="@string/add_income_button" />
 
     <Button
         android:id="@+id/new_other"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="550dp"
+        android:layout_marginTop="640dp"
         android:text="@string/new_other_button" />
 
 
