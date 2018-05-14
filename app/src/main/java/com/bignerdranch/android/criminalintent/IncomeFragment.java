@@ -24,13 +24,6 @@ public class IncomeFragment extends Fragment{
     private EditText mIncomeTitle;
     private EditText mIncomeAmount;
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mIncome= new Income();
-        setHasOptionsMenu(true);
-    }
-
     public static IncomeFragment newInstance(UUID incomeId) {
         Bundle args = new Bundle();
         args.putSerializable(ARG_INCOME_ID, incomeId);
@@ -38,12 +31,6 @@ public class IncomeFragment extends Fragment{
         IncomeFragment fragment = new IncomeFragment();
         fragment.setArguments(args);
         return fragment;
-    }
-    @Override
-    public void onPause() {
-        super.onPause();
-        IncomeLab.get(getActivity())
-                .updateIncome(mIncome);
     }
 
     @Override
@@ -63,6 +50,23 @@ public class IncomeFragment extends Fragment{
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.fragment_income, menu);
     }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mIncome= new Income();
+        setHasOptionsMenu(true);
+    }
+
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        IncomeLab.get(getActivity())
+                .updateIncome(mIncome);
+    }
+
+
 
 
     @Override

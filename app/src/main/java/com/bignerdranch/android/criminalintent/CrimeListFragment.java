@@ -48,7 +48,7 @@ public class CrimeListFragment extends Fragment {
         mCrimeRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
 
-        mEmptyCrimeList = (LinearLayout) view.findViewById(R.id.empty_crime_list);
+        //mEmptyCrimeList = (LinearLayout) view.findViewById(R.id.empty_crime_list);
         mNewCrime = (Button) view.findViewById(R.id.new_crime);
         mNewCrime.setOnClickListener(new View.OnClickListener() {
             @Override
