@@ -21,6 +21,7 @@ import static android.view.View.VISIBLE;
 
 public class CrimeListFragment extends Fragment {
     private RecyclerView mCrimeRecyclerView;
+    private RecyclerView mIncomeRecyclerView;
     private CrimeAdapter mAdapter;
     private boolean mSubtitleVisible;
     private static final String SAVED_SUBTITLE_VISIBLE = "subtitle";
@@ -46,6 +47,9 @@ public class CrimeListFragment extends Fragment {
 
         mCrimeRecyclerView = (RecyclerView) view.findViewById(R.id.crime_recycler_view);
         mCrimeRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        mIncomeRecyclerView = (RecyclerView) view.findViewById(R.id.income_recycler_view);
+        mIncomeRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
 
         //mEmptyCrimeList = (LinearLayout) view.findViewById(R.id.empty_crime_list);
