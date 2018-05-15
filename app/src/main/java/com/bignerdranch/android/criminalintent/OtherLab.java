@@ -100,6 +100,7 @@ public class OtherLab {
         values.put(OtherDbSchema.OtherTable.Cols.UUID, other.getId().toString());
         values.put(OtherDbSchema.OtherTable.Cols.TITLE, other.getTitle());
         values.put(OtherDbSchema.OtherTable.Cols.DATE, other.getDate().getTime());
+        values.put(OtherDbSchema.OtherTable.Cols.COST, other.getCost().toString());
         return values;
     }
 }

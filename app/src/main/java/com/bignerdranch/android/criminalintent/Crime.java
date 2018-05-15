@@ -22,26 +22,6 @@ public class Crime {
         mDate = new Date();
     }
 
-    public String getSuspect() {
-        return mSuspect;
-    }
-
-    public void setSuspect(String suspect) {
-        mSuspect = suspect;
-    }
-
-    public String getPhotoFilename() {
-        return "IMG_" + getId().toString() + ".jpg";
-    }
-
-    public String getPhoneNumber(){
-        return mPhoneNumber;
-    }
-
-    public void setPhoneNumber(String number) {
-        mPhoneNumber = number;
-    }
-
     public UUID getId() {
         return mId;
     }
@@ -60,14 +40,6 @@ public class Crime {
 
     public void setDate(Date date) {
         mDate = date;
-    }
-
-    public boolean isSolved() {
-        return mSolved;
-    }
-
-    public void setSolved(boolean solved) {
-        mSolved = solved;
     }
 
     public String getCost() {
