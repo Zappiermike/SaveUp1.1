@@ -48,8 +48,8 @@ public class CrimeListFragment extends Fragment {
         mCrimeRecyclerView = (RecyclerView) view.findViewById(R.id.crime_recycler_view);
         mCrimeRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        mIncomeRecyclerView = (RecyclerView) view.findViewById(R.id.income_recycler_view);
-        mIncomeRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+       // mIncomeRecyclerView = (RecyclerView) view.findViewById(R.id.income_recycler_view);
+       // mIncomeRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
 
         mNewCrime = (Button) view.findViewById(R.id.new_crime);
