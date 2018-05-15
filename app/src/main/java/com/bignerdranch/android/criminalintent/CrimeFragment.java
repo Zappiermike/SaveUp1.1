@@ -17,8 +17,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import com.squareup.picasso.Picasso;
 
-import java.io.InputStream;
-import java.net.URL;
 import java.util.UUID;
 
 public class CrimeFragment extends Fragment {
