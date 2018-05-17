@@ -2,6 +2,7 @@ package com.bignerdranch.android.criminalintent;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
@@ -13,6 +14,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
+import com.squareup.picasso.Picasso;
 
 import java.util.UUID;
 
@@ -24,6 +27,7 @@ public class CrimeFragment extends Fragment {
     private Crime mCrime;
     private EditText mTitleField;
     private EditText mCostField;
+    private ImageView mImageView;
 
 
     public static CrimeFragment newInstance(UUID crimeId) {
@@ -34,6 +38,8 @@ public class CrimeFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -75,6 +81,11 @@ public class CrimeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_bills, container, false);
 
+        mImageView = (ImageView) v.findViewById(R.id.imageView01);
+        Picasso.with(getContext())
+                .load("https://dl2.macupdate.com/images/icons256/46598.png?d=1482151766")
+                .into(mImageView);
+
         mTitleField = (EditText) v.findViewById(R.id.crime_title);
         mTitleField.setText(mCrime.getTitle());
         mTitleField.addTextChangedListener(new TextWatcher() {
@@ -113,13 +124,5 @@ public class CrimeFragment extends Fragment {
         });
 
         return v;
-    }
-
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode != Activity.RESULT_OK) {
-            return;
-        }
     }
 }

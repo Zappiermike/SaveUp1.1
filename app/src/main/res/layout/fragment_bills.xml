@@ -6,15 +6,12 @@
     android:layout_margin="18dp"
     android:orientation="vertical">
 
-    Layout for Title plus ImageButton at top
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/new_bill_title"
         android:textAllCaps="true"
-        android:textSize="24sp">
-    </TextView>
+        android:textSize="24sp" />
 
     <EditText
         android:id="@+id/crime_title"
@@ -38,5 +35,12 @@
         android:inputType="number"
         android:hint="@string/new_bill_expense_hint"/>
 
+
+    <ImageView
+        android:id="@+id/imageView01"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_margin="40dp" />
 
 </LinearLayout>

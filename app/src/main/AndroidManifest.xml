@@ -3,6 +3,7 @@
     package="com.bignerdranch.android.criminalintent">
 
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -35,8 +36,10 @@
                 android:resource="@xml/files" />
         </provider>
 
-        <activity android:name=".IncomeActivity" />
-        <activity android:name=".OtherActivity"></activity>
+        <activity android:name=".IncomeActivity"
+            android:parentActivityName=".CrimeListActivity"/>
+        <activity android:name=".OtherActivity"
+            android:parentActivityName=".CrimeListActivity"/>
     </application>
 
 </manifest>

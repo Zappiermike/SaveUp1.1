@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,10 +22,10 @@ import static android.view.View.VISIBLE;
 
 public class CrimeListFragment extends Fragment {
     private RecyclerView mCrimeRecyclerView;
+    private RecyclerView mIncomeRecyclerView;
     private CrimeAdapter mAdapter;
     private boolean mSubtitleVisible;
     private static final String SAVED_SUBTITLE_VISIBLE = "subtitle";
-    private LinearLayout mEmptyCrimeList;
     private Button mNewCrime;
     private Button mNewIncome;
     private Button mNewOther;
@@ -47,8 +48,10 @@ public class CrimeListFragment extends Fragment {
         mCrimeRecyclerView = (RecyclerView) view.findViewById(R.id.crime_recycler_view);
         mCrimeRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
+       // mIncomeRecyclerView = (RecyclerView) view.findViewById(R.id.income_recycler_view);
+       // mIncomeRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        //mEmptyCrimeList = (LinearLayout) view.findViewById(R.id.empty_crime_list);
+
         mNewCrime = (Button) view.findViewById(R.id.new_crime);
         mNewCrime.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,8 +73,7 @@ public class CrimeListFragment extends Fragment {
         mNewIncome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
-                Intent intent = new Intent(getContext(), IncomeActivity.class);
-                startActivity(intent);
+                newIncome();
             }
         });
 
@@ -89,37 +91,7 @@ public class CrimeListFragment extends Fragment {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-//        outState.putBoolean(SAVED_SUBTITLE_VISIBLE, mSubtitleVisible);
     }
-
-//    @Override
-//    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
-//        super.onCreateOptionsMenu(menu, inflater);
-//        inflater.inflate(R.menu.fragment_crime_list, menu);
-//
-//        MenuItem subtitleItem = menu.findItem(R.id.show_subtitle);
-//        if (mSubtitleVisible) {
-//            subtitleItem.setTitle(R.string.hide_subtitle);
-//        } else {
-//            subtitleItem.setTitle(R.string.show_subtitle);
-//        }
-//    }
-
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        switch (item.getItemId()) {
-//            case R.id.new_crime:
-//                newCrime();
-//                return true;
-//            case R.id.show_subtitle:
-//                mSubtitleVisible = !mSubtitleVisible;
-//                getActivity().invalidateOptionsMenu();
-//                updateSubtitle();
-//                return true;
-//            default:
-//                return super.onOptionsItemSelected(item);
-//        }
-//    }
 
     private void newCrime() {
         Crime crime = new Crime();
@@ -128,10 +100,10 @@ public class CrimeListFragment extends Fragment {
         startActivity(intent);
     }
 
-    private void newOther(){
-        Other other = new Other();
-        OtherLab.get(getActivity()).addOther(other);
-        Intent intent = CrimePagerActivity.newIntent(getActivity(), other.getId());
+    private void newIncome() {
+        Income crime = new Income();
+        IncomeLab.get(getActivity()).addIncome(crime);
+        Intent intent = new Intent(getContext(), IncomeActivity.class);
         startActivity(intent);
     }
 
@@ -182,7 +154,7 @@ public class CrimeListFragment extends Fragment {
         public void bind(Crime crime) {
             mCrime = crime;
             mTitleTextView.setText(mCrime.getTitle());
-            mDateTextView.setText(mCrime.getDate().toString());
+            mDateTextView.setText(DateFormat.format("EEEE, MMMM dd", mCrime.getDate()).toString());
             mCostView.setText(mCrime.getCost());
         }
 
