@@ -36,9 +36,12 @@
                 android:resource="@xml/files" />
         </provider>
 
-        <activity android:name=".IncomeActivity"
+        <activity
+            android:name=".IncomeActivity"
             android:parentActivityName=".CrimeListActivity"/>
-        <activity android:name=".OtherActivity"
+
+        <activity
+            android:name=".OtherActivity"
             android:parentActivityName=".CrimeListActivity"/>
     </application>
 
