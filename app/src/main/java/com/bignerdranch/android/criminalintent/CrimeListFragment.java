@@ -127,7 +127,6 @@ public class CrimeListFragment extends Fragment {
         Other other = new Other();
         OtherLab.get(getActivity()).addOther(other);
         Intent intent = OtherPagerActivity.newOtherIntent(getActivity(), other.getId());
-
         startActivity(intent);
     }
 
