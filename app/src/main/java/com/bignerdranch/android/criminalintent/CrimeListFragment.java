@@ -23,9 +23,7 @@ import static android.view.View.VISIBLE;
 public class CrimeListFragment extends Fragment {
     private RecyclerView mCrimeRecyclerView;
     private RecyclerView mIncomeRecyclerView;
-    private RecyclerView mOtherRecyclerView;
     private CrimeAdapter mAdapter;
-    private OtherAdapter mOtherAdapter;
     private boolean mSubtitleVisible;
     private static final String SAVED_SUBTITLE_VISIBLE = "subtitle";
     private Button mNewCrime;
@@ -50,11 +48,8 @@ public class CrimeListFragment extends Fragment {
         mCrimeRecyclerView = (RecyclerView) view.findViewById(R.id.crime_recycler_view);
         mCrimeRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        mIncomeRecyclerView = (RecyclerView) view.findViewById(R.id.income_recycler_view);
-        mIncomeRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-        mOtherRecyclerView = (RecyclerView) view.findViewById(R.id.other_recycler_view);
-        mOtherRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+       // mIncomeRecyclerView = (RecyclerView) view.findViewById(R.id.income_recycler_view);
+       // mIncomeRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
 
         mNewCrime = (Button) view.findViewById(R.id.new_crime);
@@ -69,7 +64,8 @@ public class CrimeListFragment extends Fragment {
         mNewOther.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                newOther();
+                Intent intent = new Intent(getContext(), OtherActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -97,8 +93,6 @@ public class CrimeListFragment extends Fragment {
         super.onSaveInstanceState(outState);
     }
 
-
-
     private void newCrime() {
         Crime crime = new Crime();
         CrimeLab.get(getActivity()).addCrime(crime);
@@ -110,16 +104,8 @@ public class CrimeListFragment extends Fragment {
         Income crime = new Income();
         IncomeLab.get(getActivity()).addIncome(crime);
         Intent intent = new Intent(getContext(), IncomeActivity.class);
-    }
-
-    private void newOther(){
-        Other other = new Other();
-        OtherLab.get(getActivity()).addOther(other);
-        Intent intent = OtherPagerActivity.newOtherIntent(getActivity(), other.getId());
-
         startActivity(intent);
     }
-
 
     private void updateSubtitle() {
         CrimeLab crimeLab = CrimeLab.get(getActivity());
@@ -138,26 +124,12 @@ public class CrimeListFragment extends Fragment {
         CrimeLab crimeLab = CrimeLab.get(getActivity());
         List<Crime> crimes = crimeLab.getCrimes();
 
-        OtherLab otherLab = OtherLab.get(getActivity());
-        List<Other> others = otherLab.getOthers();
-
-        //IncomeLab incomeLab = IncomeLab.get(getActivity());
-        //List<Income> incomes = incomeLab.getIncome();
-
         if (mAdapter == null) {
             mAdapter = new CrimeAdapter(crimes);
             mCrimeRecyclerView.setAdapter(mAdapter);
         }else {
             mAdapter.setCrimes(crimes);
             mAdapter.notifyDataSetChanged();
-        }
-
-        if (mOtherAdapter == null) {
-            mOtherAdapter = new OtherAdapter(others);
-            mOtherRecyclerView.setAdapter(mOtherAdapter);
-        }else{
-            mOtherAdapter.setOthers(others);
-            mOtherAdapter.notifyDataSetChanged();
         }
 
         updateSubtitle();
@@ -221,67 +193,6 @@ public class CrimeListFragment extends Fragment {
 
         public void setCrimes(List<Crime> crimes) {
             mCrimes = crimes;
-        }
-    }
-
-    private class OtherHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
-        private Other mOther;
-        private TextView mTitleTextView;
-        private TextView mDateTextView;
-        private TextView mCostView;
-
-        public OtherHolder(LayoutInflater inflater, ViewGroup parent) {
-            super(inflater.inflate(R.layout.list_item_crime, parent, false));
-            itemView.setOnClickListener(this);
-
-            mTitleTextView = (TextView) itemView.findViewById(R.id.crime_title);
-            mDateTextView = (TextView) itemView.findViewById(R.id.crime_date);
-            mCostView = (TextView) itemView.findViewById(R.id.new_bill_expense);
-        }
-
-        public void bind(Other crime) {
-            mOther = crime;
-            mTitleTextView.setText(mOther.getTitle());
-            mDateTextView.setText(mOther.getDate().toString());
-            mCostView.setText(mOther.getCost());
-        }
-
-        @Override
-        public void onClick(View view) {
-            Intent intent = CrimePagerActivity.newIntent(getActivity(), mOther.getId());
-            startActivity(intent);
-        }
-    }
-
-    private class OtherAdapter extends RecyclerView.Adapter<OtherHolder> {
-
-        private List<Other> mOthers;
-
-        public OtherAdapter(List<Other> crimes) {
-            mOthers = crimes;
-        }
-
-        @Override
-        public OtherHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
-            return new OtherHolder(layoutInflater, parent);
-        }
-
-        @Override
-        public void onBindViewHolder(OtherHolder holder, int position) {
-            Other crime = mOthers.get(position);
-            holder.bind(crime);
-        }
-
-        @Override
-        public int getItemCount() {
-            return mOthers.size();
-        }
-
-
-        public void setOthers(List<Other> crimes) {
-            mOthers = crimes;
         }
     }
 }
