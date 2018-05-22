@@ -15,6 +15,17 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bignerdranch.android.criminalintent.Crime;
+import com.bignerdranch.android.criminalintent.CrimeLab;
+import com.bignerdranch.android.criminalintent.CrimePagerActivity;
+import com.bignerdranch.android.criminalintent.Income;
+import com.bignerdranch.android.criminalintent.IncomeActivity;
+import com.bignerdranch.android.criminalintent.IncomeLab;
+import com.bignerdranch.android.criminalintent.Other;
+import com.bignerdranch.android.criminalintent.OtherLab;
+import com.bignerdranch.android.criminalintent.OtherPagerActivity;
+import com.bignerdranch.android.criminalintent.R;
+
 import java.util.List;
 
 import static android.view.View.GONE;
