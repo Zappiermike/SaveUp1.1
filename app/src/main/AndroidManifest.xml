@@ -22,6 +22,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".OtherPagerActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
         <activity
             android:name=".CrimePagerActivity"
             android:parentActivityName=".CrimeListActivity" />
@@ -36,10 +44,12 @@
                 android:resource="@xml/files" />
         </provider>
 
+
         <activity android:name=".IncomeActivity"
             android:parentActivityName=".CrimeListActivity"/>
         <activity android:name=".OtherActivity"
             android:parentActivityName=".CrimeListActivity"/>
+
     </application>
 
 </manifest>

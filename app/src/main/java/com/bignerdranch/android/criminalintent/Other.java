@@ -8,10 +8,14 @@ public class Other {
     private UUID mId;
     private String mTitle;
     private Date mDate;
-    private Integer mCost;
+    private String mCost;
 
     public Other(){
-        mId = UUID.randomUUID();
+        this(UUID.randomUUID());
+    }
+
+    public Other(UUID id){
+        mId = id;
         mDate = new Date();
     }
 
@@ -39,11 +43,11 @@ public class Other {
         mDate = date;
     }
 
-    public Integer getCost() {
+    public String getCost() {
         return mCost;
     }
 
-    public void setCost(Integer cost) {
+    public void setCost(String cost) {
         mCost = cost;
     }
 }

@@ -3,9 +3,10 @@ package com.bignerdranch.android.criminalintent;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.CursorWrapper;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.bignerdranch.android.criminalintent.database.CrimeBaseHelper;
+import com.bignerdranch.android.criminalintent.database.OtherBaseHelper;
 import com.bignerdranch.android.criminalintent.database.OtherDbSchema;
 
 import java.io.File;
@@ -19,7 +20,8 @@ public class OtherLab {
     private SQLiteDatabase mDatabase;
 
     public void deleteOther(Other c){
-        mDatabase.delete(OtherDbSchema.OtherTable.NAME, OtherDbSchema.OtherTable.Cols.UUID + " = ?", new String[] { c.getId().toString() });
+        mDatabase.delete(OtherDbSchema.OtherTable.NAME,
+                OtherDbSchema.OtherTable.Cols.UUID + " = ?", new String[] { c.getId().toString() });
     }
 
     public void addOther(Other c) {
@@ -37,27 +39,27 @@ public class OtherLab {
 
     private OtherLab(Context context) {
         mContext = context.getApplicationContext();
-        mDatabase = new CrimeBaseHelper(mContext).getWritableDatabase();
+        mDatabase = new OtherBaseHelper(mContext).getWritableDatabase();
     }
 
-    public List<Crime> getCrimes() {
-        List<Crime> crimes = new ArrayList<>();
-        CrimeCursorWrapper cursor = queryCrimes(null, null);
+    public List<Other> getOthers() {
+        List<Other> others = new ArrayList<>();
+        OtherCursorWrapper cursor = queryOthers(null, null);
 
         try {
             cursor.moveToFirst();
             while (!cursor.isAfterLast()) {
-                crimes.add(cursor.getCrime());
+                others.add(cursor.getOther());
                 cursor.moveToNext();
             }
         } finally {
             cursor.close();
         }
-        return crimes;
+        return others;
     }
 
-    public Crime getOther(UUID id) {
-        CrimeCursorWrapper cursor = queryCrimes (
+    public Other getOther(UUID id) {
+        OtherCursorWrapper cursor = queryOthers (
                 OtherDbSchema.OtherTable.Cols.UUID + " = ?",
                 new String[] { id.toString() }
         );
@@ -67,13 +69,13 @@ public class OtherLab {
                 return null;
             }
             cursor.moveToFirst();
-            return cursor.getCrime();
+            return cursor.getOther();
         } finally {
             cursor.close();
         }
     }
 
-    public void updateCrime(Other other) {
+    public void updateOther(Other other) {
         String uuidString = other.getId().toString();
         ContentValues values = getContentValues(other);
 
@@ -82,7 +84,7 @@ public class OtherLab {
                 new String[] {uuidString});
     }
 
-    private CrimeCursorWrapper queryCrimes(String whereClause, String[] whereArgs) {
+    private OtherCursorWrapper queryOthers(String whereClause, String[] whereArgs) {
         Cursor cursor = mDatabase.query(
                 OtherDbSchema.OtherTable.NAME,
                 null, //colums - null selects all columns
@@ -92,7 +94,7 @@ public class OtherLab {
                 null,   //having
                 null    //orderBy
         );
-        return new CrimeCursorWrapper(cursor);
+        return new OtherCursorWrapper(cursor);
     }
 
     private static ContentValues getContentValues(Other other) {
@@ -100,7 +102,7 @@ public class OtherLab {
         values.put(OtherDbSchema.OtherTable.Cols.UUID, other.getId().toString());
         values.put(OtherDbSchema.OtherTable.Cols.TITLE, other.getTitle());
         values.put(OtherDbSchema.OtherTable.Cols.DATE, other.getDate().getTime());
-        values.put(OtherDbSchema.OtherTable.Cols.COST, other.getCost().toString());
+        values.put(OtherDbSchema.OtherTable.Cols.COST, other.getCost());
         return values;
     }
 }

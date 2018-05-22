@@ -61,4 +61,27 @@
 
     </android.support.v7.widget.RecyclerView>
 
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/income_recycler_view"
+        android:layout_width="308dp"
+        android:layout_height="110dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="190dp">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/other_recycler_view"
+        android:layout_width="308dp"
+        android:layout_height="110dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="340dp">
+
+    </android.support.v7.widget.RecyclerView>
+
+
+
+
+>>>>>>> Stashed changes
 </FrameLayout>
