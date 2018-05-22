@@ -253,13 +253,13 @@ public class CrimeListFragment extends Fragment {
         public void bind(Other crime) {
             mOther = crime;
             mTitleTextView.setText(mOther.getTitle());
-            mDateTextView.setText(mOther.getDate().toString());
+            mDateTextView.setText(DateFormat.format("EEEE, MMMM dd", mOther.getDate()).toString());
             mCostView.setText(mOther.getCost());
         }
 
         @Override
         public void onClick(View view) {
-            Intent intent = CrimePagerActivity.newIntent(getActivity(), mOther.getId());
+            Intent intent = OtherPagerActivity.newOtherIntent(getActivity(), mOther.getId());
             startActivity(intent);
         }
     }
